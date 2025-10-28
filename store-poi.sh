@@ -6,6 +6,6 @@ if [[ $coords != "-1" ]]; then
   code=$(echo $r | jq '.code')
   ans=$(echo $r | jq '.text')
   if [[ $code -eq -1 ]]; then
-    echo "$coords,$ans" >> "~/mylocations.poi"
+    echo "$coords;$ans" >> "./mylocations.poi"
   fi
 fi
