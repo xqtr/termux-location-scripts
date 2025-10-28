@@ -1,0 +1,8 @@
+bt-connection.txt         How to share GPS data via Bleutooth
+json2csv.sh               Convert JSON result from termux-location to simple csv
+listen_gpsd_server.sh     Create GPSD server
+listen_netcat_server.sh   Receive GPS/NMEA data via netcat
+send_gps_nmea.sh          Sends NMEA data from smartphone/termux
+termux-location           Fake 'termux-location' script, for testing
+termux-weather.sh         Get weather from wttr site, using GPS coordinates of termux-location
+store-poi.sh              Get location and store it as a POI in a text file

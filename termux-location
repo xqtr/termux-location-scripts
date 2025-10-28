@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# simulates the termux-location util
+
+echo '{
+  "latitude": 40.7128,
+  "longitude": -74.0060,
+  "altitude": 10.5,
+  "accuracy": 5.2,
+  "vertical_accuracy": 141.600,
+  "bearing": 0.0,
+  "speed": 0.0,
+  "elapsedMs": 18,
+  "provider": "gps"
+}'

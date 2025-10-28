@@ -1,0 +1,54 @@
+## On the PC/Host
+
+### 1. Pair with your phone
+```
+bluetoothctl
+scan on
+pair <PHONE-MAC>
+trust <PHONE-MAC>
+exit
+```
+
+You can check with: `bluetoothctl info <PHONE-MAC>`
+
+
+### 2. Bind a virtual serial port
+
+Run (replace <PHONE-MAC> with your phone’s address):
+`sudo rfcomm bind /dev/rfcomm0 <PHONE-MAC> 1`
+
+1 is the channel number (SPP channel).
+
+You can verify it’s listening with: `ls -l /dev/rfcomm0`
+
+Now your PC sees the Bluetooth link as a serial device.
+
+3. Start gpsd on that port
+
+`sudo gpsd /dev/rfcomm0 -n -N`
+
+Then test with: `cgps -s`
+
+## On the Phone (Termux side)
+
+### 1. Ensure Bluetooth permissions
+
+```
+termux-setup-storage
+termux-bt
+```
+
+### 2. Run your NMEA streamer over Bluetooth
+
+Use rfcomm (Termux package: pkg install bluez) or socat to open an RFCOMM socket and send NMEA.
+
+If your phone acts as the server, run:
+
+`rfcomm listen hci0 1`
+
+This opens channel 1 and waits for a connection from your PC.
+
+Then pipe your GPS data into it:
+
+`./send_gps_nmea.sh rfcomm 1`
+
